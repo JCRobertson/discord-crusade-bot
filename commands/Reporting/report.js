@@ -6,7 +6,7 @@ module.exports = {
   category: "Reporting",
   aliases: ["report"],
   cooldown: 2,
-  usage: "report <TITLE> ++ <NARRATIVE REPORT HERE>",
+  usage: "report <REPORT TITLE> ++ <NARRATIVE REPORT HERE>",
   description:
     "Resends your report from you as an Embed and gives Warzone Points to your alliance",
   run: async (client, message, args, user, text, prefix) => {
@@ -22,6 +22,7 @@ module.exports = {
       let userargs = args.join(" ").split("++");
       let title = userargs[0];
       let report = userargs.slice(1).join(" ");
+      //Find Role
       let roles = user.roles.cache;
       let role = "";
       for (var [key, value] of roles) {
@@ -33,16 +34,22 @@ module.exports = {
           role = ee.mayhemRole;
         }
       }
+      //Determine Embed Color based on alliance
       let color = ee.color;
       if (role == ee.orderRole) {
         color = ee.orderColor;
       } else if (role == ee.mayhemRole) {
         color = ee.mayhemColor;
       }
+      //Grab User Avatar
+      let avatarURL = ""
+      await client.users.fetch(user.id, false).then(fetchedUser => {
+        avatarURL = fetchedUser.avatarURL();
+      });
       message.channel.send(
         new MessageEmbed()
           .setColor(color)
-          .setFooter("Written by: " + user.displayName, user.avatar)
+          .setFooter(user.displayName, avatarURL)
           .setTitle(title ? title : "")
           .setDescription(report ? report : "")
       );
