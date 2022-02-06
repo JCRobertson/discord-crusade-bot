@@ -24,7 +24,6 @@ module.exports = {
       let report = userargs.slice(1).join(" ");
       let roles = user.roles.cache;
       let role = "";
-      console.log("roles " + roles);
       for (var [key, value] of roles) {
         let roleName = value.name;
         if (roleName == ee.orderRole) {
