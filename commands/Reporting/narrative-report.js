@@ -4,7 +4,7 @@ const ee = require("../../botconfig/embed.json");
 module.exports = {
   name: "report",
   category: "Reporting",
-  aliases: ["report"],
+  aliases: ["narrative-report"],
   cooldown: 2,
   usage: "report <REPORT TITLE> ++ <NARRATIVE REPORT HERE>",
   description:

@@ -12,12 +12,12 @@ module.exports = {
     try{
       message.channel.send(new MessageEmbed()
         .setColor(ee.color)
-        .setFooter(ee.footertext, ee.footericon)
+        .setFooter(ee.footertext, client.user.displayAvatarURL())
         .setTitle(`🏓 Pinging....`)
       ).then(msg=>{
         msg.edit(new MessageEmbed()
           .setColor(ee.color)
-          .setFooter(ee.footertext, ee.footericon)
+          .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setTitle(`🏓 Ping is \`${Math.round(client.ws.ping)}ms\``)
         );
       })
@@ -25,7 +25,7 @@ module.exports = {
         console.log(String(e.stack).bgRed)
         return message.channel.send(new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setFooter(ee.footertext, ee.footericon)
+            .setFooter(ee.footertext, client.user.displayAvatarURL())
             .setTitle(`❌ ERROR | An error occurred`)
             .setDescription(`\`\`\`${e.stack}\`\`\``)
         );
