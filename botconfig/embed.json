@@ -1,6 +1,10 @@
 {
-  "color": "#3498db",
+  "color": "#800080",
+  "orderColor": "#3498db",
+  "mayhemColor": "#db3445",
   "wrongcolor": "#e01e01",
-  "footertext": "Your Bot Name",
-  "footericon": "https://img.icons8.com/color/452/discord-logo.png"
+  "footertext": "Crusade Score Tracker",
+  "footericon": "https://img.icons8.com/color/452/discord-logo.png",
+  "orderRole": "Order Alliance",
+  "mayhemRole": "Mayhem Alliance"
 }
