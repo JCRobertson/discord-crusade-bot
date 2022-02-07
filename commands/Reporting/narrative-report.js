@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
+const constants = require("../../utilities/constants.json");
 module.exports = {
   name: "report",
   category: "Reporting",
@@ -27,18 +28,18 @@ module.exports = {
       let role = "";
       for (var [key, value] of roles) {
         let roleName = value.name;
-        if (roleName == ee.orderRole) {
-          role = ee.orderRole;
+        if (roleName == constants.orderRole) {
+          role = constants.orderRole;
           break;
-        } else if (roleName == ee.mayhemRole) {
-          role = ee.mayhemRole;
+        } else if (roleName == constants.mayhemRole) {
+          role = constants.mayhemRole;
         }
       }
       //Determine Embed Color based on alliance
       let color = ee.color;
-      if (role == ee.orderRole) {
+      if (role == constants.orderRole) {
         color = ee.orderColor;
-      } else if (role == ee.mayhemRole) {
+      } else if (role == constants.mayhemRole) {
         color = ee.mayhemColor;
       }
       //Grab User Avatar
