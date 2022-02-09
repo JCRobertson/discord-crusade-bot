@@ -26,7 +26,9 @@ module.exports = async (client, message) => {
     //now define the right prefix either ping or not ping
     const [, matchedPrefix] = message.content.match(prefixRegex);
     //create the arguments with sliceing of of the rightprefix length
-    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
+    let args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
+    //clear newlines from command
+    args = [...args[0].split(/\n+/), ...args.shift()];
     //creating the cmd argument by shifting the args by 1
     const cmd = args.shift().toLowerCase();
     //if no cmd added return error

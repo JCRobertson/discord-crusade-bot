@@ -18,7 +18,7 @@ module.exports = {
             .setColor(ee.wrongcolor)
             .setFooter(ee.footertext, client.user.displayAvatarURL())
             .setTitle(`❌ ERROR | You didn't type anything`)
-            .setDescription(`Usage: \`${prefix}${this.usage}\``)
+            .setDescription(`Usage: \`${prefix}"report <TEXT>"\``)
         );
         return message.delete();
       }
