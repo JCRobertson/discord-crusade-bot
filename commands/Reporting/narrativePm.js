@@ -42,13 +42,13 @@ module.exports = {
         color = ee.mayhemColor;
       }
       let url = urlBuilder(user.user.tag, role == constants.orderRole ? constants.orderId : mayhemId, true, false);
-      let title = "Thank you for your report! Please click the link to get points for your alliance."
+      let title = "Thanks for your report! Click this link to get points for your alliance!"
       message.author.send(
         new MessageEmbed()
           .setColor(color)
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setTitle(title ? title : "")
-          .setDescription(url ? url : "")
+          .setURL(url ? url : "")
       );
     } catch (e) {
       console.log(String(e.stack).bgRed);
