@@ -3,5 +3,7 @@
     "mayhemRole": "Mayhem Alliance",
     "orderId": "Order",
     "mayhemId": "Mayhem",
-    "trophyUnicode": "🏆"
+    "trophyUnicode": "🏆",
+    "narrativeReportsChannel": "📜narrative-reports",
+    "crusadePhotosChannel": "📷crusade-photos"
 }

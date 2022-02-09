@@ -3,23 +3,48 @@ const ee = require("../../botconfig/embed.json");
 const urlBuilder = require("../../Utilities/bonus-form-url-builder.js");
 const constants = require("../../Utilities/constants.json");
 module.exports = {
-  name: "report",
+  name: "photo",
   category: "Reporting",
-  aliases: ["narrative-report"],
+  aliases: ["crusade-photo"],
   cooldown: 2,
-  usage: "!report <TEXT>",
+  usage: "!photo",
   description:
-    "Sends you a prefilled form link for your narrative report and let's everyone know that this can be voted on",
+    "Sends you a prefilled form link for your narrative photo and let's everyone know that this can be voted on",
   run: async (client, message, args, user, text, prefix) => {
     try {
-      if (!args[0])
-        return message.channel.send(
-          new MessageEmbed()
-            .setColor(ee.wrongcolor)
-            .setFooter(ee.footertext, client.user.displayAvatarURL())
-            .setTitle(`❌ ERROR | You didn't type anything`)
-            .setDescription(`Usage: \`${prefix}${this.usage}\``)
-        );
+      if (message.channel.name != constants.crusadePhotosChannel) {
+        message.channel
+          .send(
+            new MessageEmbed()
+              .setColor(ee.wrongcolor)
+              .setFooter(ee.footertext, client.user.displayAvatarURL())
+              .setTitle(
+                "❌ Error | You can only use !photo in #" +
+                  constants.crusadePhotosChannel
+              )
+          )
+          .then((msg) =>
+            msg
+              .delete({ timeout: 5000 })
+              .catch((e) => console.log("Couldn't Delete --> Ignore".gray))
+          );
+        return message.delete();
+      }
+      if (message.attachments == null ||message.attachments.size == 0) {
+        message.channel
+          .send(
+            new MessageEmbed()
+              .setColor(ee.wrongcolor)
+              .setFooter(ee.footertext, client.user.displayAvatarURL())
+              .setTitle("❌ Error | You forgot to attach a photo!")
+          )
+          .then((msg) =>
+            msg
+              .delete({ timeout: 5000 })
+              .catch((e) => console.log("Couldn't Delete --> Ignore".gray))
+          );
+        return message.delete();
+      }
       message.react(constants.trophyUnicode);
       //Find Role
       let roles = user.roles.cache;
@@ -41,8 +66,14 @@ module.exports = {
       } else if (role == constants.mayhemRole) {
         color = ee.mayhemColor;
       }
-      let url = urlBuilder(user.user.tag, role == constants.orderRole ? constants.orderId : mayhemId, true, false);
-      let title = "Thanks for your report! Click this link to get points for your alliance!"
+      let url = urlBuilder(
+        user.user.tag,
+        role == constants.orderRole ? constants.orderId : constants.mayhemId,
+        false,
+        true
+      );
+      let title =
+        "Thanks for your photo! Click this link to get points for your alliance!";
       message.author.send(
         new MessageEmbed()
           .setColor(color)
