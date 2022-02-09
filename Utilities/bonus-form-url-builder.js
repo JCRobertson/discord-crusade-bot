@@ -1,9 +1,9 @@
-const constants = require("../../utilities/constants.json");
+const constants = require("../Utilities/constants.json");
 
 module.exports = (discordTag, factionId, isReport, isPhoto) => {
   let url =
       "https://docs.google.com/forms/d/e/1FAIpQLScJESX26QQBHy3ahyEBhd4LV5t2fXLIFQxSSZX5EqM5eTQKng/viewform?usp=pp_url&",
-    discordIdEntry = "entry.116831608=That+Fellow+Traveler%233555",
+    discordIdEntry = "entry.116831608=",
     factionIdEntry = "&entry.866172526=",
     typeIdEntry = "&entry.632939385=";
   const photoId =

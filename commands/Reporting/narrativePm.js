@@ -1,38 +1,37 @@
 const { MessageEmbed } = require("discord.js");
-const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const constants = require("../../utilities/constants.json");
+const urlBuilder = require("../../Utilities/bonus-form-url-builder.js");
+const constants = require("../../Utilities/constants.json");
 module.exports = {
   name: "report",
   category: "Reporting",
   aliases: ["narrative-report"],
   cooldown: 2,
-  usage: "report <REPORT TITLE> ++ <NARRATIVE REPORT HERE>",
+  usage: "!report <TEXT>",
   description:
-    "Resends your report from you as an Embed and gives Warzone Points to your alliance",
+    "Sends you a prefilled form link for your narrative report and let's everyone know that this can be voted on",
   run: async (client, message, args, user, text, prefix) => {
     try {
       if (!args[0])
         return message.channel.send(
           new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setFooter(ee.footertext, ee.footericon)
-            .setTitle(`❌ ERROR | You didn't add any text`)
+            .setFooter(ee.footertext, client.user.displayAvatarURL())
+            .setTitle(`❌ ERROR | You didn't type anything`)
             .setDescription(`Usage: \`${prefix}${this.usage}\``)
         );
-      let userargs = args.join(" ").split("++");
-      let title = userargs[0];
-      let report = userargs.slice(1).join(" ");
+      message.react(constants.trophyUnicode);
       //Find Role
       let roles = user.roles.cache;
       let role = "";
       for (var [key, value] of roles) {
-        let roleName = value.name;
-        if (roleName == constants.orderRole) {
+        role = value.name;
+        if (role == constants.orderRole) {
           role = constants.orderRole;
           break;
-        } else if (roleName == constants.mayhemRole) {
+        } else if (role == constants.mayhemRole) {
           role = constants.mayhemRole;
+          break;
         }
       }
       //Determine Embed Color based on alliance
@@ -42,28 +41,26 @@ module.exports = {
       } else if (role == constants.mayhemRole) {
         color = ee.mayhemColor;
       }
-      //Grab User Avatar
-      let avatarURL = ""
-      await client.users.fetch(user.id, false).then(fetchedUser => {
-        avatarURL = fetchedUser.avatarURL();
-      });
-      message.channel.send(
+      let url = urlBuilder(user.user.tag, role == constants.orderRole ? constants.orderId : mayhemId, true, false);
+      let title = "Thank you for your report! Please click the link to get points for your alliance."
+      message.author.send(
         new MessageEmbed()
           .setColor(color)
-          .setFooter(user.displayName, avatarURL)
+          .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setTitle(title ? title : "")
-          .setDescription(report ? report : "")
+          .setDescription(url ? url : "")
       );
     } catch (e) {
       console.log(String(e.stack).bgRed);
       return message.channel.send(
         new MessageEmbed()
           .setColor(ee.wrongcolor)
-          .setFooter(ee.footertext, ee.footericon)
+          .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setTitle(`❌ ERROR | An error occurred`)
           .setDescription(`\`\`\`${e.stack}\`\`\``)
       );
     }
   },
 };
+
 /** Template by Tomato#6966 | https://github.com/Tomato6966/Discord-Js-Handler-Template */

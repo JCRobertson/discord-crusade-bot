@@ -63,6 +63,7 @@ module.exports = {
           }
           message.channel.send(embed);
       }
+      message.delete();
     } catch (e) {
         console.log(String(e.stack).bgRed)
         return message.channel.send(new MessageEmbed()
