@@ -28,7 +28,9 @@ module.exports = async (client, message) => {
     //create the arguments with sliceing of of the rightprefix length
     let args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
     //clear newlines from command
-    args = [...args[0].split(/\n+/), ...args.shift()];
+    if(args[0].includes("\n")) {
+      args = [...args[0].trim().split(/\n+/), ...args.shift()];
+    }
     //creating the cmd argument by shifting the args by 1
     const cmd = args.shift().toLowerCase();
     //if no cmd added return error

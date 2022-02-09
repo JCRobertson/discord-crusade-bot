@@ -12,7 +12,7 @@ module.exports = {
     "Sends you a prefilled form link for your narrative report and let's everyone know that this can be voted on",
   run: async (client, message, args, user, text, prefix) => {
     try {
-      if (!args[0]) {
+      if (!args[0] || args[0] == "\n") {
         message.channel.send(
           new MessageEmbed()
             .setColor(ee.wrongcolor)
