@@ -16,6 +16,7 @@ module.exports = {
         .setFooter(ee.footertext,client.user.displayAvatarURL())
         .setTitle(`:white_check_mark: **${client.user.username}** is since:\n ${duration(client.uptime)} online`)
       );
+      message.delete();
     } catch (e) {
         console.log(String(e.stack).bgRed)
         return message.channel.send(new MessageEmbed()

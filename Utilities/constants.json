@@ -1,0 +1,9 @@
+{
+    "orderRole": "Order Alliance",
+    "mayhemRole": "Mayhem Alliance",
+    "orderId": "Order",
+    "mayhemId": "Mayhem",
+    "trophyUnicode": "🏆",
+    "narrativeReportsChannel": "📜narrative-reports",
+    "crusadePhotosChannel": "📷crusade-photos"
+}

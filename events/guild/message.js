@@ -26,7 +26,11 @@ module.exports = async (client, message) => {
     //now define the right prefix either ping or not ping
     const [, matchedPrefix] = message.content.match(prefixRegex);
     //create the arguments with sliceing of of the rightprefix length
-    const args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
+    let args = message.content.slice(matchedPrefix.length).trim().split(/ +/);
+    //clear newlines from command
+    if(args[0].includes("\n")) {
+      args = [...args[0].trim().split(/\n+/), ...args.shift()];
+    }
     //creating the cmd argument by shifting the args by 1
     const cmd = args.shift().toLowerCase();
     //if no cmd added return error
@@ -66,8 +70,6 @@ module.exports = async (client, message) => {
         timestamps.set(message.author.id, now); //if he is not on cooldown, set it to the cooldown
         setTimeout(() => timestamps.delete(message.author.id), cooldownAmount); //set a timeout function with the cooldown, so it gets deleted later on again
       try{
-        //try to delete the message of the user who ran the cmd
-        try{  message.delete();   }catch{}
         //if Command has specific permission return error
         if(command.memberpermissions && !message.member.hasPermission(command.memberpermissions, { checkAdmin: command.adminPermOverride, checkOwner: command.adminPermOverride })) {
           return message.channel.send(new Discord.MessageEmbed()

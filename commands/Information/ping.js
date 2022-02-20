@@ -21,6 +21,7 @@ module.exports = {
           .setTitle(`🏓 Ping is \`${Math.round(client.ws.ping)}ms\``)
         );
       })
+      message.delete();
     } catch (e) {
         console.log(String(e.stack).bgRed)
         return message.channel.send(new MessageEmbed()
