@@ -3,7 +3,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 module.exports = {
   name: "link",
-  category: "Information",
+  category: "Admin",
   aliases: ["l", "linktree"],
   cooldown: 4,
   usage: "link",
