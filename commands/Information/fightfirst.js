@@ -18,7 +18,7 @@ module.exports = {
           client.user.displayAvatarURL()
         )
         .setImage(
-          "https://d1w82usnq70pt2.cloudfront.net/wp-content/uploads/2020/04/Fight-Phase-Choose-Units-Flow-Chart-Final-2.png"
+          "https://d1w82usnq70pt2.cloudfront.net/wp-content/uploads/2021/06/Flow-Chart-2021-06-05-Fight-Phase-Simple-v2.png"
         );
       message.channel.send(embed);
     } catch (e) {
