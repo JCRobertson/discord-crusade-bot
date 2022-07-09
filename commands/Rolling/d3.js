@@ -7,7 +7,7 @@ module.exports = {
   aliases: ["rolld3", "rd3", "D3"],
   cooldown: 4,
   usage: "d3 <TEXT>",
-  description: "Rolls 2 D3 for you to choose from",
+  description: "Rolls a D3",
   run: async (client, message, args, user, text, prefix) => {
     try {
       let result1 = Math.floor(Math.random() * 3 + 1);
