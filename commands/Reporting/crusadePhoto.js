@@ -3,11 +3,11 @@ const ee = require("../../botconfig/embed.json");
 const urlBuilder = require("../../Utilities/bonus-form-url-builder.js");
 const constants = require("../../Utilities/constants.json");
 module.exports = {
-  name: "photo",
+  name: "unit",
   category: "Reporting",
-  aliases: ["crusade-photo"],
+  aliases: ["paint-unit, paint, unit"],
   cooldown: 2,
-  usage: "!photo",
+  usage: "!unit",
   description:
     "Sends you a prefilled form link for your narrative photo and let's everyone know that this can be voted on",
   run: async (client, message, args, user, text, prefix) => {
@@ -19,7 +19,7 @@ module.exports = {
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, client.user.displayAvatarURL())
               .setTitle(
-                "❌ Error | You can only use !photo in #" +
+                "❌ Error | You can only use !unit in #" +
                   constants.crusadePhotosChannel
               )
           )
@@ -30,7 +30,7 @@ module.exports = {
           );
         return message.delete();
       }
-      if (message.attachments == null ||message.attachments.size == 0) {
+      if (message.attachments == null || message.attachments.size == 0) {
         message.channel
           .send(
             new MessageEmbed()
@@ -51,26 +51,29 @@ module.exports = {
       let role = "";
       for (var [key, value] of roles) {
         role = value.name;
-        if (role == constants.orderRole) {
-          role = constants.orderRole;
+        if (role == constants.purityRole) {
+          role = constants.purityRole;
           break;
-        } else if (role == constants.mayhemRole) {
-          role = constants.mayhemRole;
+        } else if (role == constants.warpChargedRole) {
+          role = constants.warpChargedRole;
           break;
         }
       }
       //Determine Embed Color based on alliance
       let color = ee.color;
-      if (role == constants.orderRole) {
+      if (role == constants.purityRole) {
         color = ee.orderColor;
-      } else if (role == constants.mayhemRole) {
+      } else if (role == constants.warpChargedRole) {
         color = ee.mayhemColor;
       }
       let url = urlBuilder(
         user.user.tag,
-        role == constants.orderRole ? constants.orderId : constants.mayhemId,
+        role == constants.purityRole
+          ? constants.purityId
+          : constants.warpChargedId,
         false,
-        true
+        true,
+        false
       );
       let title =
         "Thanks for your photo! Click this link to get points for your alliance!";

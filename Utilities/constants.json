@@ -1,9 +1,14 @@
 {
-    "orderRole": "Order Alliance",
-    "mayhemRole": "Mayhem Alliance",
-    "orderId": "Order",
-    "mayhemId": "Mayhem",
-    "trophyUnicode": "🏆",
-    "narrativeReportsChannel": "📜narrative-reports",
-    "crusadePhotosChannel": "📷crusade-photos"
+  "orderRole": "Order Alliance",
+  "mayhemRole": "Mayhem Alliance",
+  "purityRole": "Purity of Purpose",
+  "warpChargedRole": "Warp-Charged",
+  "orderId": "Order",
+  "mayhemId": "Mayhem",
+  "purityId": "Purity+of+Purpose",
+  "warpChargedId": "Warp-Charged",
+  "trophyUnicode": "🏆",
+  "narrativeReportsChannel": "📜narrative-reports",
+  "crusadePhotosChannel": "🎨parade-ground",
+  "battleReportPhotosChannel": "📷frontline-photos"
 }

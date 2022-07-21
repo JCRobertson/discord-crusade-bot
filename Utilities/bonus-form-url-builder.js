@@ -1,15 +1,14 @@
 const constants = require("../Utilities/constants.json");
 
-module.exports = (discordTag, factionId, isReport, isPhoto) => {
+module.exports = (discordTag, factionId, isReport, isPainted, isPhoto) => {
   let url =
-      "https://docs.google.com/forms/d/e/1FAIpQLScJESX26QQBHy3ahyEBhd4LV5t2fXLIFQxSSZX5EqM5eTQKng/viewform?usp=pp_url&",
-    discordIdEntry = "entry.116831608=",
+      "https://docs.google.com/forms/d/e/1FAIpQLSfrO2UHF4EyQPi8QkE58_KDrwnbQmyZz8DMLDdzJeX09ijOCQ/viewform?usp=pp_url",
+    discordIdEntry = "&entry.116831608=",
     factionIdEntry = "&entry.866172526=",
     typeIdEntry = "&entry.632939385=";
-  const photoId =
-      "Paint+a+Unit+%2B1+(Must+be+at+minimum+Battle+Ready.+Must+be+in+your+order+of+battle.+Must+post+photo+proof+on+discord+%23crusade-photos+channel+and+add+a+:trophy:+emoji+to+the+text+describing+the+photo)",
-    reportId =
-      "Battle+Report+Post+%2B1+(Each+player+can+post+a+story+from+their+perspective!+Pictures+are+a+plus.+Post+on+discord+narrative-reports+channel+and+add+a+:trophy:+emoji+to+the+text+of+the+post)";
+  const paintedId = "Painted+a+Unit",
+    reportId = "Narrative+Report",
+    photoId = "Battle+Report+Picture(s)";
 
   if (discordTag) {
     //Sanitize Tag
@@ -18,11 +17,19 @@ module.exports = (discordTag, factionId, isReport, isPhoto) => {
   }
   if (factionId) {
     factionIdEntry +=
-      factionId == constants.orderId ? constants.orderId : constants.mayhemId;
+      factionId == constants.purityId
+        ? constants.purityId
+        : constants.warpChargedId;
     url += factionIdEntry;
   }
-  if (isReport || isPhoto) {
-    typeIdEntry += isReport ? reportId : photoId;
+  if (isReport) {
+    typeIdEntry += reportId;
+    url += typeIdEntry;
+  } else if (isPainted) {
+    typeIdEntry += paintedId;
+    url += typeIdEntry;
+  } else if (isPhoto) {
+    typeIdEntry += photoId;
     url += typeIdEntry;
   }
 

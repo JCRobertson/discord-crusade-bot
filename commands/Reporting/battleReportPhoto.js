@@ -3,35 +3,40 @@ const ee = require("../../botconfig/embed.json");
 const urlBuilder = require("../../Utilities/bonus-form-url-builder.js");
 const constants = require("../../Utilities/constants.json");
 module.exports = {
-  name: "report",
+  name: "photo",
   category: "Reporting",
-  aliases: ["narrative-report"],
+  aliases: ["battle-report, brphoto, br, photo"],
   cooldown: 2,
-  usage: "report <TEXT>",
+  usage: "!photo",
   description:
-    "Sends you a prefilled form link for your narrative report and let's everyone know that this can be voted on",
+    "Sends you a prefilled form link for your battle report photo and let's everyone know that this can be voted on",
   run: async (client, message, args, user, text, prefix) => {
     try {
-      if (!args[0] || args[0] == "\n") {
-        message.channel.send(
-          new MessageEmbed()
-            .setColor(ee.wrongcolor)
-            .setFooter(ee.footertext, client.user.displayAvatarURL())
-            .setTitle(`❌ ERROR | You didn't type anything`)
-            .setDescription(`Usage: \`${prefix}"report <TEXT>"\``)
-        );
-        return message.delete();
-      }
-      if (message.channel.name != constants.narrativeReportsChannel) {
+      if (message.channel.name != constants.battleReportPhotosChannel) {
         message.channel
           .send(
             new MessageEmbed()
               .setColor(ee.wrongcolor)
               .setFooter(ee.footertext, client.user.displayAvatarURL())
               .setTitle(
-                "❌ Error | You can only use !report in #" +
-                  constants.narrativeReportsChannel
+                "❌ Error | You can only use !unit in #" +
+                  constants.battleReportPhotosChannel
               )
+          )
+          .then((msg) =>
+            msg
+              .delete({ timeout: 5000 })
+              .catch((e) => console.log("Couldn't Delete --> Ignore".gray))
+          );
+        return message.delete();
+      }
+      if (message.attachments == null || message.attachments.size == 0) {
+        message.channel
+          .send(
+            new MessageEmbed()
+              .setColor(ee.wrongcolor)
+              .setFooter(ee.footertext, client.user.displayAvatarURL())
+              .setTitle("❌ Error | You forgot to attach a photo!")
           )
           .then((msg) =>
             msg
@@ -66,12 +71,12 @@ module.exports = {
         role == constants.purityRole
           ? constants.purityId
           : constants.warpChargedId,
-        true,
         false,
-        false
+        false,
+        true
       );
       let title =
-        "Thanks for your report! Click this link to get points for your alliance!";
+        "Thanks for your photo(s)! Click this link to get points for your alliance!";
       message.author.send(
         new MessageEmbed()
           .setColor(color)
