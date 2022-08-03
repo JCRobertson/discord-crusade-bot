@@ -45,7 +45,13 @@ module.exports = async (client, message) => {
       return;
       }
     //get the command from the collection
-    let command = client.commands.get(cmd);
+    let command;
+    for (const cmdRegex of client.commands.keys()) {
+        if ((new RegExp(cmdRegex)).test(cmd)) {
+            command = client.commands.get(cmdRegex);
+            break;
+        }
+    }
     //if the command does not exist, try to get it by his alias
     if (!command) command = client.commands.get(client.aliases.get(cmd));
     //if the command is now valid
@@ -92,7 +98,7 @@ module.exports = async (client, message) => {
           )
         }
         //run the command with the parameters:  client, message, args, user, text, prefix,
-        command.run(client, message, args, message.member, args.join(" "), prefix);
+        command.run(client, message, args, message.member, args.join(" "), prefix, cmd);
       }catch (e) {
         console.log(String(e.stack).red)
         return message.channel.send(new Discord.MessageEmbed()
@@ -112,7 +118,7 @@ module.exports = async (client, message) => {
     ).then(msg=>msg.delete({timeout: 5000}).catch(e=>console.log("Couldn't Delete --> Ignore".gray)));
   }catch (e){
     return message.channel.send(
-    new MessageEmbed()
+    new Discord.MessageEmbed()
     .setColor("RED")
     .setTitle(`❌ ERROR | An error occurred`)
     .setDescription(`\`\`\`${e.stack}\`\`\``)
