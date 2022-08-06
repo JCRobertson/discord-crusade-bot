@@ -1,31 +1,52 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
+
+const diceRegex = new RegExp(/(\d*)d(\d+)/);
+
 module.exports = {
-  name: "d3",
+  name: "\\d*d\\d+",
   category: "Rolling",
-  aliases: ["rolld3", "rd3", "D3"],
+  aliases: [],
   cooldown: 4,
-  usage: "d3 <TEXT>",
-  description: "Rolls a D3",
-  run: async (client, message, args, user, text, prefix) => {
+  usage: "XdX <TEXT>",
+  description: "Rolls a number of specified dice",
+  run: async (client, message, args, user, text, prefix, command) => {
     try {
-      let result1 = Math.floor(Math.random() * 3 + 1);
-      let title1 = "Rolling Your Die";
-      let title2 = "Your D3 Result";
+      const match = command.match(diceRegex);
+      const diceNum = (match[1] === "") ? 1 : parseInt(match[1])
+      const diceSize = parseInt(match[2])
+
+      let result = [];
+      let sum = 0;
+      for (let die = 0; die < diceNum; die++) {
+        const roll = Math.floor(Math.random() * diceSize + 1);
+        result.push("`" + roll.toString() + "`");
+        sum += roll;
+      }
+
+      if (result.length > 1) {
+        result = result.join(" + ");
+        result = result + " = `" + sum.toString() + "`";
+      } else {
+        result = "`" + sum.toString() + "`";
+      }
+
+      let title1 = "Rolling " + command + "...";
+      let title2 = "Your " + command + " Result";
       if (args[0]) {
         let argString = "";
         for (let element of args.values()) {
           argString = argString + " " + element;
         }
-        title1 = title1 + " for " + argString;
-        title2 = title2 + " for " + argString;
+        title1 = title1 + " for" + argString;
+        title2 = title2 + " for" + argString;
       }
       const embed = new MessageEmbed()
         .setColor(ee.color)
         .setTitle(title2)
         .setFooter(ee.footertext, client.user.displayAvatarURL())
-        .addFields({ name: "Result", value: result1, inline: true });
+        .addFields({ name: "Result", value: result, inline: true });
       message.channel
         .send(
           new MessageEmbed()
