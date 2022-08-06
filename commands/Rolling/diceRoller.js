@@ -18,21 +18,12 @@ module.exports = {
       const diceSize = parseInt(match[2])
 
       let result = [];
-      let sum = 0;
-      for (let die = 0; die < diceNum; die++) {
-        const roll = Math.floor(Math.random() * diceSize + 1);
-        result.push("`" + roll.toString() + "`");
-        sum += roll;
-      }
+        for (let die = 0; die < diceNum; die++) {
+          const roll = Math.floor(Math.random() * diceSize + 1);
+          result.push({name: "Result "+(die+1), value: "`" + roll.toString() + "`", inline: true});
+        }
 
-      if (result.length > 1) {
-        result = result.join(" + ");
-        result = result + " = `" + sum.toString() + "`";
-      } else {
-        result = "`" + sum.toString() + "`";
-      }
-
-      let title1 = "Rolling " + command + "...";
+      let title1 = "Rolling " + command;
       let title2 = "Your " + command + " Result";
       if (args[0]) {
         let argString = "";
@@ -46,7 +37,7 @@ module.exports = {
         .setColor(ee.color)
         .setTitle(title2)
         .setFooter(ee.footertext, client.user.displayAvatarURL())
-        .addFields({ name: "Result", value: result, inline: true });
+        .addFields(result);
       message.channel
         .send(
           new MessageEmbed()
