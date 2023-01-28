@@ -77,13 +77,13 @@ module.exports = {
       );
       let title =
         "Thanks for your photo(s)! Click this link to get points for your alliance!";
-      message.author.send(
-        new MessageEmbed()
-          .setColor(color)
-          .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setTitle(title ? title : "")
-          .setURL(url ? url : "")
-      );
+      // message.author.send(
+      //   new MessageEmbed()
+      //     .setColor(color)
+      //     .setFooter(ee.footertext, client.user.displayAvatarURL())
+      //     .setTitle(title ? title : "")
+      //     .setURL(url ? url : "")
+      // );
     } catch (e) {
       console.log(String(e.stack).bgRed);
       return message.channel.send(

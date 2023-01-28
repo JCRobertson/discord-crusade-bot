@@ -2,30 +2,37 @@ const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 
-const diceRegex = new RegExp(/(\d*)d(\d+)/);
-
 module.exports = {
-  name: "\\d*d\\d+",
+  name: "roll",
   category: "Rolling",
-  aliases: [],
+  aliases: ["r"],
   cooldown: 4,
-  usage: "XdX <TEXT>",
+  usage: "roll XdX <TEXT>",
   description: "Rolls a number of specified dice",
   run: async (client, message, args, user, text, prefix, command) => {
     try {
-      const match = command.match(diceRegex);
-      const diceNum = (match[1] === "") ? 1 : parseInt(match[1])
-      const diceSize = parseInt(match[2])
+      let diceNum = text.substr(0, text.indexOf("d"));
+      if (diceNum === "") {
+        diceNum = 1;
+      }
+      let diceSize = text.substr(text.indexOf("d"), text.indexOf(" "));
+      if (diceSize === "") {
+        diceSize = text.slice(text.indexOf("d") + 1);
+      }
 
       let result = [];
-        for (let die = 0; die < diceNum; die++) {
-          const roll = Math.floor(Math.random() * diceSize + 1);
-          result.push({name: "Result "+(die+1), value: "`" + roll.toString() + "`", inline: true});
-        }
+      for (let die = 0; die < diceNum; die++) {
+        const roll = Math.floor(Math.random() * diceSize + 1);
+        result.push({
+          name: "Result " + (die + 1),
+          value: "`" + roll.toString() + "`",
+          inline: true,
+        });
+      }
 
-      let title1 = "Rolling " + command;
-      let title2 = "Your " + command + " Result";
-      if (args[0]) {
+      let title1 = "Rolling " + args[0];
+      let title2 = "Your " + args[0] + " Result";
+      if (args[1]) {
         let argString = "";
         for (let element of args.values()) {
           argString = argString + " " + element;
