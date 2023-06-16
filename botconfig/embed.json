@@ -4,5 +4,10 @@
   "mayhemColor": "#db3445",
   "wrongcolor": "#e01e01",
   "footertext": "Crusade Servo Skull",
-  "footericon": "https://img.icons8.com/color/452/discord-logo.png"
+  "footericon": "https://img.icons8.com/color/452/discord-logo.png",
+  "spacemarineColor": "#3336FF",
+  "chapterColor": "#DE1010",
+  "imperiumColor": "#D8EB3C",
+  "chaosColor": "#5D0F0F",
+  "xenosColor": "#2E0F5D"
 }
