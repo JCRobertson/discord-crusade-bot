@@ -31,6 +31,15 @@ module.exports = {
       message.channel.send(
         new MessageEmbed()
           .setColor(ee.color)
+          .setTitle("Boarding Actions")
+          .setFooter(ee.footertext, client.user.displayAvatarURL())
+          .setURL(
+            "https://www.warhammer-community.com/2023/06/22/boarding-actions-rules-download-perilous-close-quarters-battles-in-the-depths-of-space/"
+          )
+      );
+      message.channel.send(
+        new MessageEmbed()
+          .setColor(ee.color)
           .setTitle("Munitorum Field Manual (Points)")
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setURL(

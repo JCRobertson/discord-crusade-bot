@@ -2,11 +2,11 @@ const { MessageEmbed, Message } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 module.exports = {
-  name: "indexes",
+  name: "datasheets",
   category: "Information",
-  aliases: ["i", "index"],
+  aliases: ["i", "index", "datasheet", "indexes"],
   cooldown: 4,
-  usage: "indexes",
+  usage: "datasheets",
   description: "Returns the links for the indexes",
   run: async (client, message, args, user, text, prefix) => {
     try {
@@ -53,6 +53,33 @@ module.exports = {
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setURL(
             "https://www.warhammer-community.com/2023/06/15/free-xenos-index-cards-the-battle-for-the-galaxy-rages-on-all-sides/"
+          )
+      );
+      message.channel.send(
+        new MessageEmbed()
+          .setColor(ee.color)
+          .setTitle("Imperial Armour")
+          .setFooter(ee.footertext, client.user.displayAvatarURL())
+          .setURL(
+            "https://www.warhammer-community.com/2023/06/23/downloadable-datasheets-and-points-for-imperial-armour/"
+          )
+      );
+      message.channel.send(
+        new MessageEmbed()
+          .setColor(ee.color)
+          .setTitle("Combat Patrol")
+          .setFooter(ee.footertext, client.user.displayAvatarURL())
+          .setURL(
+            "https://www.warhammer-community.com/2023/06/20/free-combat-patrol-rule-downloads-let-you-fight-fast-balanced-skirmishes-in-the-new40k/"
+          )
+      );
+      message.channel.send(
+        new MessageEmbed()
+          .setColor(ee.color)
+          .setTitle("Legends")
+          .setFooter(ee.footertext, client.user.displayAvatarURL())
+          .setURL(
+            "https://www.warhammer-community.com/2023/06/21/the-legends-of-the-horus-heresy-get-downloadable-rules-for-warhammer-40000/"
           )
       );
     } catch (e) {
