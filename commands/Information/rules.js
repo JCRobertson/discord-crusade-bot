@@ -13,37 +13,39 @@ module.exports = {
       message.channel.send(
         new MessageEmbed()
           .setColor(ee.color)
-          .setTitle("10th Edition Core Rules")
+          .setTitle(
+            "10th Edition Core Rules, Quick Start Rules, and Rules Commentary"
+          )
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setURL(
-            "https://www.warhammer-community.com/warhammer-40000-downloads/"
+            "https://www.warhammer-community.com/warhammer-40000-downloads/#key-downloads"
           )
       );
       message.channel.send(
         new MessageEmbed()
           .setColor(ee.color)
-          .setTitle("Developer Commentary")
+          .setTitle("Indexes")
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setURL(
-            "https://www.warhammer-community.com/wp-content/uploads/2023/06/KBvH5h3oY5QREpmG.pdf"
+            "https://www.warhammer-community.com/warhammer-40000-downloads/#indexes-faqs-and-errata"
           )
       );
       message.channel.send(
         new MessageEmbed()
           .setColor(ee.color)
-          .setTitle("Boarding Actions")
+          .setTitle("Boarding Actions Core Rules")
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setURL(
-            "https://www.warhammer-community.com/2023/06/22/boarding-actions-rules-download-perilous-close-quarters-battles-in-the-depths-of-space/"
+            "https://www.warhammer-community.com/wp-content/uploads/2023/06/Qs7siCNJ4Sm5AsPU.pdf"
           )
       );
       message.channel.send(
         new MessageEmbed()
           .setColor(ee.color)
-          .setTitle("Munitorum Field Manual (Points)")
+          .setTitle("Boarding Actions Mustering Rules 2.0")
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setURL(
-            "https://www.warhammer-community.com/wp-content/uploads/2023/06/oF1iWIkNsvlUHByM.pdf"
+            "https://www.warhammer-community.com/wp-content/uploads/2023/06/IFLb85WS9bQEKqZP.pdf"
           )
       );
     } catch (e) {

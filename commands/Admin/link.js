@@ -13,38 +13,9 @@ module.exports = {
       message.channel.send(
         new MessageEmbed()
           .setColor(ee.color)
-          .setTitle("Vadinax Player Pack")
+          .setTitle("PCA Linktree")
           .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setURL(
-            "https://www.goonhammer.com/the-vadinax-campaign-player-packs/"
-          )
-      );
-      message.channel.send(
-        new MessageEmbed()
-          .setColor(ee.color)
-          .setTitle("Crusade Balance Dataslate")
-          .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setURL(
-            "https://drive.google.com/file/d/1jxtkUsT1353G1zyz9OUcICZrg0r6c8tT/view"
-          )
-      );
-      message.channel.send(
-        new MessageEmbed()
-          .setColor(ee.color)
-          .setTitle("Boarding Actions Army Mustering Rules")
-          .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setURL(
-            "https://www.warhammer-community.com/wp-content/uploads/2023/01/qPJwZxeX8lH4HarK.pdf"
-          )
-      );
-      message.channel.send(
-        new MessageEmbed()
-          .setColor(ee.color)
-          .setTitle("Huzzah Planet Perplior Store Narrative Pack")
-          .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setURL(
-            "https://docs.google.com/document/d/1Fx5a9VnHqkrZe_95M36UE7iDLSB3HpDc01m8d-6U1_A/edit?usp=sharing"
-          )
+          .setURL("https://www.linktr.ee/novapca")
       );
       message.channel.send(
         new MessageEmbed()
@@ -54,20 +25,6 @@ module.exports = {
           .setURL(
             "https://docs.google.com/document/d/1RJS0B5tGWDHA8ZRItppnIIDX6yTz974-5pRRQdZylKk/edit?usp=sharing"
           )
-      );
-      message.channel.send(
-        new MessageEmbed()
-          .setColor(ee.color)
-          .setTitle("Campaign Invite Link")
-          .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setURL("https://administratum.goonhammer.com/join?code=TBTFYG9")
-      );
-      message.channel.send(
-        new MessageEmbed()
-          .setColor(ee.color)
-          .setTitle("PCA Linktree")
-          .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setURL("https://www.linktr.ee/novapca")
       );
     } catch (e) {
       console.log(String(e.stack).bgRed);

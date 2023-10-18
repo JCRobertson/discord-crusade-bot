@@ -12,8 +12,10 @@ module.exports = {
     try {
       const embed = new MessageEmbed()
         .setColor(ee.color)
-        .setTitle("WarCom FAQ Link")
-        .setURL("https://www.warhammer-community.com/faqs/")
+        .setTitle("40k FAQ & Errata Link")
+        .setURL(
+          "https://www.warhammer-community.com/warhammer-40000-downloads/#indexes-faqs-and-errata"
+        )
         .setFooter(ee.footertext, client.user.displayAvatarURL());
       message.channel.send(embed);
     } catch (e) {
