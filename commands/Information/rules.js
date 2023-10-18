@@ -33,19 +33,10 @@ module.exports = {
       message.channel.send(
         new MessageEmbed()
           .setColor(ee.color)
-          .setTitle("Boarding Actions Core Rules")
+          .setTitle("Boarding Actions Core and Mustering Rules")
           .setFooter(ee.footertext, client.user.displayAvatarURL())
           .setURL(
-            "https://www.warhammer-community.com/wp-content/uploads/2023/06/Qs7siCNJ4Sm5AsPU.pdf"
-          )
-      );
-      message.channel.send(
-        new MessageEmbed()
-          .setColor(ee.color)
-          .setTitle("Boarding Actions Mustering Rules 2.0")
-          .setFooter(ee.footertext, client.user.displayAvatarURL())
-          .setURL(
-            "https://www.warhammer-community.com/wp-content/uploads/2023/06/IFLb85WS9bQEKqZP.pdf"
+            "https://www.warhammer-community.com/warhammer-40000-downloads/#additional-rules"
           )
       );
     } catch (e) {
